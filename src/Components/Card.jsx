@@ -6,6 +6,8 @@ import { FaRegComments } from "react-icons/fa6";
 import { FaLink } from "react-icons/fa6";
 import { FaCalendarDays } from "react-icons/fa6";
 import CardOptions from "./CardOptions";
+import UploadFiles from "./UploadFiles";
+import ViewFiles from "./ViewFiles";
 
 
 const getItemStyle = (isDragging, draggableStyle) => ({
@@ -29,7 +31,7 @@ const Card = ({ prop, i }) => {
                         </div>
 
 
-                        <CardOptions/>
+                        <CardOptions _id={prop._id}/>
 
 
 
@@ -37,11 +39,9 @@ const Card = ({ prop, i }) => {
                     <div className=" flex justify-between py-2">
                         <div className=" flex items-center space-x-1">
                             <FaBuffer />
-                            <p>{prop.topicName} : {prop.status}</p>
+                            <p>{prop.topicName} </p>
                         </div>
-                        <div className=" flex items-center">
-                            <button className=" btn btn-sm btn-primary"><FaClipboardList /> view Task</button>
-                        </div>
+                        <ViewFiles prop={prop}/>
                     </div>
                     <div className=" flex items-center justify-between">
                         <div className=" flex">
@@ -50,9 +50,9 @@ const Card = ({ prop, i }) => {
                             <h1 className=" font-semibold w-8 aspect-square bg-slate-200 rounded-full flex items-center justify-center">12+</h1>
                         </div>
                         <div className=" flex space-x-3">
-                            <p className=" flex items-center"><FaRegComments /> 15</p>
-                            <p className=" flex items-center"><FaLink /> 15</p>
-                            <p className=" flex items-center"><FaCalendarDays /> 12-18-2024</p>
+                            <p className=" flex items-center"><FaRegComments className=" mr-1"/> {prop.comments.length}</p>
+                            <UploadFiles prop={prop}/>
+                            <p className=" flex items-center"><FaCalendarDays /> {prop.date}</p>
                         </div>
                     </div>
                 </div>

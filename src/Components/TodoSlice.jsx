@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import Card from './Card';
+import { todo } from '../Utils/Constants';
 
 
 
@@ -45,7 +46,7 @@ const TodoSlice = ({tasks}) => {
                             return (
                                 <div className='bg-green-300' {...provided.droppableProps} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
                                     {
-                                        datas?.map((one, i) => (
+                                        datas?.filter(one=>one.status === todo).map((one, i) => (
                                             <Card key={one._id} prop={one} i={i} />
                                         ))
                                     }

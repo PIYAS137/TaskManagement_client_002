@@ -1,18 +1,16 @@
 import { useState } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import Card from './Card';
-import { incomplete } from '../Utils/Constants';
+import { complete, todo } from '../Utils/Constants';
 
 
 
 const getListStyle = (isDraggingOver) => ({
-    background: isDraggingOver ? '#e7e7e7' : '#e7e7e7',
+    background: '#e7e7e7',
     padding: 8,
     // width: 250
 })
-
-
-const IncompleteSlice = ({ tasks }) => {
+const CompleteSlice = ({tasks}) => {
     const [datas, setDatas] = useState(tasks)
 
     const reorder = (list, startIndex, endIndex) => {
@@ -37,8 +35,8 @@ const IncompleteSlice = ({ tasks }) => {
 
 
     return (
-        <div className=' bg-slate-100 rounded-lg  pb-10 '>
-            <h1 className=' flex justify-around items-center text-center font-black py-1 bg-[#e7e7e7]'><span>Incomplete</span> <span className=' bg-gray-300 p-2 rounded-lg'>0</span></h1>
+        <div className=' bg-slate-100 rounded-lg overflow-hidden pb-10 h-[70%]'>
+            <h1 className=' flex justify-around items-center text-center font-black py-1 bg-[#e7e7e7]'><span>Doing</span> <span className=' bg-gray-300 p-2 rounded-lg'>0</span></h1>
             <div className='h-full w-full overflow-y-scroll'>
                 <DragDropContext onDragEnd={onDragEnd}>
                     <Droppable droppableId='droppable'>
@@ -46,7 +44,7 @@ const IncompleteSlice = ({ tasks }) => {
                             return (
                                 <div className='bg-green-300' {...provided.droppableProps} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
                                     {
-                                        datas?.filter(one=>one.status===incomplete).map((one, i) => (
+                                        datas?.filter(one => one.status === complete).map((one, i) => (
                                             <Card key={one._id} prop={one} i={i} />
                                         ))
                                     }
@@ -60,4 +58,4 @@ const IncompleteSlice = ({ tasks }) => {
     )
 }
 
-export default IncompleteSlice
+export default CompleteSlice

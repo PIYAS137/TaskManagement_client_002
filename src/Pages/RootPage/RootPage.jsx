@@ -4,7 +4,7 @@ import AppNavbar from "../../Layouts/AppNavbar"
 
 const RootPage = () => {
   return (
-    <div className=" h-screen overflow-hidden ">
+    <div className=" ">
         <AppNavbar/>
         <Outlet/>
     </div>

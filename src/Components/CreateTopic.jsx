@@ -65,10 +65,6 @@ const CreateTopic = () => {
                         <label className="text-white text-sm">Enter topic Name</label>
                         <input onChange={e => setText(e.target.value)} value={text} type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
                     </div>
-                    {/* <div className="flex flex-col">
-                        <label htmlFor="" className=" text-white">Upload a file </label>
-                        <input onChange={e=>setFile(e.target.files[0])} value={file} className="text-white bg-purple-600 rounded-lg max-w-xs" type="file" />
-                    </div> */}
                     <button className="btn btn-primary px-7">Upload</button>
                 </form>
             }
