@@ -5,6 +5,7 @@ import HomePage from '../Pages/HomePage/HomePage';
 import LoginPage from '../Pages/LoginPage/LoginPage';
 import SignupPage from '../Pages/SignupPage/SignupPage';
 import TasksPage from '../Pages/TasksPage/TasksPage';
+import PrivateRoutes from '../Private/PrivateRoutes';
 
 const router = createBrowserRouter([
     {
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
             },
             {
                 path : '/tasks',
-                element : <TasksPage/>
+                element : <PrivateRoutes><TasksPage/></PrivateRoutes>
             }
         ]
     }

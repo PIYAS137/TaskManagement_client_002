@@ -18,8 +18,11 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 
 
 const Card = ({ prop, i }) => {
+
+    console.log(prop);
+
     return (
-        <Draggable key={prop.id} draggableId={prop?.id.toString()} index={i}>
+        <Draggable key={i} draggableId={prop?._id.toString()} index={i}>
             {(provided, snapshot) => (
                 <div className='rounded-lg' ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}>
 
@@ -37,7 +40,7 @@ const Card = ({ prop, i }) => {
                     <div className=" flex justify-between py-2">
                         <div className=" flex items-center space-x-1">
                             <FaBuffer />
-                            <p>Topic Name</p>
+                            <p>{prop.topicName}</p>
                         </div>
                         <div className=" flex items-center">
 

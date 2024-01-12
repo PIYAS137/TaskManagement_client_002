@@ -1,33 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Card from './Card';
+import useGetAllTask from '../Hooks/useGetAllTask';
 
-const arr = [
-    {
-        id: 1,
-        data: '1111111'
-    },
-    {
-        id: 2,
-        data: '2222222'
-    },
-    {
-        id: 3,
-        data: '33333333'
-    },
-    {
-        id: 4,
-        data: '44444444'
-    },
-    {
-        id: 5,
-        data: '55555555'
-    },
-    {
-        id: 6,
-        data: '666666666'
-    }
-]
+
 
 const getListStyle = (isDraggingOver) => ({
     background: isDraggingOver ? '#e7e7e7' : '#e7e7e7',
@@ -36,8 +12,8 @@ const getListStyle = (isDraggingOver) => ({
 })
 
 
-const IncompleteSlice = () => {
-    const [datas, setDatas] = useState(arr)
+const IncompleteSlice = ({ tasks }) => {
+    const [datas, setDatas] = useState(tasks)
 
     const reorder = (list, startIndex, endIndex) => {
         const result = Array.from(list);
@@ -61,17 +37,17 @@ const IncompleteSlice = () => {
 
 
     return (
-        <div className=' bg-slate-100 rounded-lg overflow-hidden'>
+        <div className=' bg-slate-100 rounded-lg overflow-hidden pb-10 h-[70%]'>
             <h1 className=' flex justify-around items-center text-center font-black py-1 bg-[#e7e7e7]'><span>Incomplete</span> <span className=' bg-gray-300 p-2 rounded-lg'>0</span></h1>
-            <div className=' max-h-[80%] w-full overflow-y-scroll'>
+            <div className='h-full w-full overflow-y-scroll'>
                 <DragDropContext onDragEnd={onDragEnd}>
                     <Droppable droppableId='droppable'>
                         {(provided, snapshot) => {
                             return (
                                 <div className='bg-green-300' {...provided.droppableProps} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
                                     {
-                                        datas.map((one, i) => (
-                                            <Card key={one.id} prop={one} i={i}/>
+                                        datas?.map((one, i) => (
+                                            <Card key={one._id} prop={one} i={i} />
                                         ))
                                     }
                                 </div>

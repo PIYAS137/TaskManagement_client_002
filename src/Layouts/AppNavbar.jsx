@@ -1,17 +1,25 @@
+import { useContext } from "react"
 import { Link, NavLink } from "react-router-dom"
+import { FirebaseAuthContext } from "../Contexts/FirebaseContext"
 
 
 const AppNavbar = () => {
 
+    const { user, Firebase_Logout_User, } = useContext(FirebaseAuthContext);
 
+    console.log(user);
+
+
+    const handleClickSignOut = () => {
+        Firebase_Logout_User()
+            .then().catch()
+    }
 
 
     const navLinks = <>
         <li><NavLink to={'/'}>Home page</NavLink></li>
         <li><NavLink to={'/tasks'}>Tasks page</NavLink></li>
     </>
-
-
 
     return (
         <div className="navbar bg-base-300">
@@ -28,12 +36,20 @@ const AppNavbar = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                   {navLinks}
+                    {navLinks}
                 </ul>
             </div>
-            <div className="navbar-end">
-                <Link to={'/login'}><button className="btn btn-primary">Login</button></Link>
-                <Link to={'/login'}><button className="btn bg-red-500 border-none text-white btn-primary">Logout</button></Link>
+            <div className="navbar-end z-40">
+                <div className=" mr-2 flex items-center space-x-2 ">
+                    <h1 className=" font-semibold text-primary">{user?.displayName}</h1>
+                    {user?.photoURL && <img className=" w-10 aspect-square object-cover rounded-full" src={user?.photoURL} alt="" />}
+                </div>
+                {
+                    user?.email ?
+                        <Link><button onClick={handleClickSignOut} className="btn b bg-red-500 border-none text-white">Logout</button></Link>
+                        :
+                        <Link to={'/login'}><button className="btn btn-primary">Login</button></Link>
+                }
             </div>
         </div>
     )
