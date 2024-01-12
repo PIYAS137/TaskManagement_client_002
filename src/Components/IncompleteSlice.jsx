@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { useState } from 'react';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import Card from './Card';
-import useGetAllTask from '../Hooks/useGetAllTask';
 
 
 
